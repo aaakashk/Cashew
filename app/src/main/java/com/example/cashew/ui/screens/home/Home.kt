@@ -1,4 +1,4 @@
-package com.example.cashew.home
+package com.example.cashew.ui.screens.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun AccountsList(modifier: Modifier) {
+fun AccountsList() {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp),
@@ -32,8 +32,11 @@ fun AccountsList(modifier: Modifier) {
 
 @Preview
 @Composable
-fun PreviewAccounts() {
-    AccountsList(modifier = Modifier)
+fun Preview() {
+    Column {
+        GreetingCard()
+        AccountsList()
+    }
 }
 
 @Composable

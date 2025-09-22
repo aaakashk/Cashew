@@ -1,4 +1,4 @@
-package com.example.cashew.home
+package com.example.cashew.ui.screens.home
 
 data class Account<T : Number>(
     val name: String,
