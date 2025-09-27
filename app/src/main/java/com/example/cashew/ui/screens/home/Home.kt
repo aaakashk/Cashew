@@ -21,5 +21,6 @@ fun Preview() {
         UpcomingAndOverdueTileRow()
         LentAndBorrowedTileRow()
         NetWorthTileRow()
+        TransactionSegmentedButton()
     }
 }
