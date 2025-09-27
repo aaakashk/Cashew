@@ -1,7 +1,6 @@
 package com.example.cashew.components
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -23,7 +22,7 @@ fun CustomCard(
     modifier: Modifier = Modifier,
     onClick: (() -> Unit)? = null,
 ) {
-    val modifier = modifier.padding(all = 16.dp)
+    val modifier = modifier
     val cardElevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     if (onClick == null) {
         Card(
@@ -45,7 +44,7 @@ fun CustomCard(
 
 @Composable
 private fun CardContent(text: String, fontSize: TextUnit, fontWeight: FontWeight, color: Color) {
-    Column(modifier = Modifier.padding(bottom = 8.dp)) {
+    Column(modifier = Modifier) {
         Text(text = text, fontWeight = fontWeight, fontSize = fontSize, color = color)
     }
 }
