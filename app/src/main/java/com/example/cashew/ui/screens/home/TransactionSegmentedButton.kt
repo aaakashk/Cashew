@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.cashew.ui.theme.ActiveSelectionColor
 import com.example.cashew.ui.theme.TileBackGroundColor
 
 @Composable
@@ -43,7 +44,7 @@ fun TransactionSegmentedButton() {
                     0.dp
                 ),
                 colors = SegmentedButtonDefaults.colors(
-                    activeContainerColor = Color(0xFF5F443A),
+                    activeContainerColor = ActiveSelectionColor,
                     activeContentColor = Color.White,
                     inactiveContainerColor = TileBackGroundColor,
                     inactiveContentColor = Color.Gray,
