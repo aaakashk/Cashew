@@ -6,19 +6,25 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.example.cashew.components.Tile
+import com.example.cashew.domain.model.Account
+import com.example.cashew.ui.viewmodels.AccountViewModel
 
 @Composable
-fun AccountsRow() {
+fun AccountsRow(viewModel: AccountViewModel = hiltViewModel()) {
+    val accounts by viewModel.allAccounts.collectAsState()
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         content = {
-            items(getAccounts()) { account ->
+            items(accounts) { account ->
                 Account(account = account)
             }
         }
@@ -26,7 +32,7 @@ fun AccountsRow() {
 }
 
 @Composable
-fun Account(account: Account<Number>) {
+fun Account(account: Account) {
     Tile(
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.SpaceAround
@@ -52,67 +58,7 @@ fun Account(account: Account<Number>) {
     }
 }
 
-fun getAccounts(): MutableList<Account<Number>> {
-    val accounts = mutableListOf<Account<Number>>()
-    accounts.add(
-        Account(
-            name = "SBI",
-            balance = 1234.45,
-            transactionsCount = 411,
-            decimalPlaces = 2,
-            currency = "INR",
-            isPrimary = true,
-        )
-    )
-    accounts.add(
-        Account(
-            name = "HDFC",
-            balance = 999.45,
-            transactionsCount = 21,
-            decimalPlaces = 2,
-            currency = "INR"
-        )
-    )
-    accounts.add(
-        Account(
-            name = "Cash",
-            balance = 1234,
-            transactionsCount = 50,
-            decimalPlaces = 1,
-            currency = "INR",
-        )
-    )
-    accounts.add(
-        Account(
-            name = "Cash",
-            balance = 1234,
-            transactionsCount = 50,
-            decimalPlaces = 1,
-            currency = "INR"
-        )
-    )
-    accounts.add(
-        Account(
-            name = "Cash",
-            balance = 1234,
-            transactionsCount = 50,
-            decimalPlaces = 1,
-            currency = "INR"
-        )
-    )
-    accounts.add(
-        Account(
-            name = "Cash",
-            balance = 1234,
-            transactionsCount = 50,
-            decimalPlaces = 1,
-            currency = "INR"
-        )
-    )
-    return accounts
-}
-
-fun formatBalance(account: Account<Number>): String {
+fun formatBalance(account: Account): String {
     if (account.decimalPlaces != 0) {
         val formatSpecifier = "%.${account.decimalPlaces}f"
         val formattedBalance = String.format(formatSpecifier, account.balance.toDouble())
